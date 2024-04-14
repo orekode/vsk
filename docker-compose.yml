@@ -1,0 +1,53 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: '2'
+services:
+  mariadb:
+    image: bitnami/mariadb
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=vskuuler
+      - MARIADB_DATABASE=vskuul_db
+      - MARIADB_CHARACTER_SET=utf8mb4
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
+    volumes:
+      - 'mariadb_data:/bitnami/mariadb'
+  moodle:
+    image: bitnami/moodle
+    ports:
+      - '8080:8080'
+      - '8443:8443'
+    environment:
+      - MOODLE_DATABASE_HOST=mariadb
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=vskuuler
+      - MOODLE_DATABASE_NAME=vskuul_db
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      # - 'moodle_data:/bitnami/moodle'
+      - 'moodledata_data:/bitnami/moodledata'
+      - '/opt/lampp/htdocs/vsk:/bitnami/moodle'
+    depends_on:
+      - mariadb
+  dbclient:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '3307:80'
+    volumes:
+      - 'dbclient_data:/vskuul/dbclient'
+    depends_on:
+      - mariadb
+    links:
+      - mariadb:db
+volumes:
+  mariadb_data:
+    driver: local
+  # moodle_data:
+  #   driver: local
+  moodledata_data:
+    driver: local
+  dbclient_data:
+    driver: local

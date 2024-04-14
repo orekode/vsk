@@ -1,0 +1,210 @@
+{{!
+    @template local_school_registration/register
+
+    School Registration Page.
+
+    Example context (json):
+    {
+        "output": {
+            "school_registration": "Add new schools to the vskuul system",
+            "page_doc_link": "<a href='https:/vskuul.com/local/school_registration/register.php'>School Registration Pole</a>",
+            "login_info": "You are logged in as cute kitten",
+            "supportemail": "<a href=\"#\">Contact site support</a>",
+            "services_support_link": "Services and support"
+        }
+    }
+}}
+
+<style>
+    .container {
+        display: grid;
+        grid-template-columns: 6fr 300px;
+    }
+
+    .table-head {
+        border: 1px solid #f2f2f2;
+        border-radius: 10px;
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+    }
+
+    .table-item {
+        border: 1px solid #f2f2f2;
+        border-radius: 10px;
+        font-weight: bolder;
+        padding: 1rem 0.75rem;
+        margin: 1rem 0;
+        transition: .3s; 
+    }
+
+    .table-cell {
+        width: 200px;
+        border-radius: 10px;
+        order: 1px solid #f2f2f2;
+    }
+
+    .text-center {
+        align-text: center;
+    }
+
+    .table-item:nth-of-type(2n) {
+        background: #f7f7f7;
+    }
+
+    .table-item:hover {
+        background: #d2ebd99e;
+    }
+
+    .title {
+        font-weight: black;
+        font-size: 200%;
+    }
+
+    .flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .flex-between {
+        justify-content: space-between;
+    }
+
+    .gap-05 {
+        gap: 0.5rem;
+    }
+
+    .gap-2 {
+        gap: 2rem;
+    }
+
+    .search-box {
+        width: 400px;
+    }
+
+    .search-box .icon-box {
+        background: blue;
+        color: white;
+        font-weight: bold;
+        font-size: 150%;
+    }
+
+    .search-box input {
+        border: 1px solid #f2f2f2;
+        border-radius: 10px;
+        padding: 1rem;
+    }
+
+    .w-full, .hw-full {
+        width: 100%;
+    }
+
+    .h-full, .hw-full {
+        height: 100%;
+    }
+
+    .flex-grow {
+        flex-grow: 1;
+    }
+
+    .add {
+        background: green;
+    }
+
+    
+</style>
+
+<div>
+
+    <div class="title-box flex flex-between gap-2">
+        <h2 class="title">Schools</h2>
+
+        <div class="search-box flex gap-05">
+            <div class="input flex-grow">
+                <input type="text" placeholder="search for a school here..." name="search" class="hw-full"/>
+            </div>
+
+            <div class="search-icon">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </div>
+
+                <a href="http://localhost:8080/local/school_registration/register.php" class="icon-box add">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+
+        <div>
+
+            <div>
+                <div class="table-head flex text-center gap-05">
+                    <div class="table-cell">
+                        School Name
+                    </div>
+
+                    <div class="table-cell">
+                        Region/Location
+                    </div>
+
+                    <div class="table-cell">
+                        Email Address
+                    </div>
+
+                    <div class="table-cell">
+                        Contact
+                    </div>
+
+                    <div class="table-cell">
+                        Status
+                    </div>
+
+                    <div class="table-cell">
+                        Actions
+                    </div>
+                </div>
+
+                {{#schools}}
+                    <div class="table-item flex text-center gap-05">
+                        <div class="table-cell">
+                            {{name}}
+                        </div>
+
+                        <div class="table-cell">
+                            {{region_id}}
+                        </div>
+
+                        <div class="table-cell">
+                            {{email}}
+                        </div>
+
+                        <div class="table-cell">
+                            {{contact}}
+                        </div>
+
+                        <div class="table-cell">
+                            {{status}}
+                        </div>
+
+                        <div class="table-cell">
+                            
+                        </div>
+                    </div>
+                {{/schools}}
+
+            </div>
+
+        </div>
+
+        <div>
+        </div>
+        
+    </div>
+<div>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/school_registration/db" VERSION="2024041300" COMMENT="XMLDB file for local_school_registration plugin"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_schools" COMMENT="each record is a school on the system">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" COMMENT="Primary key"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="200" NOTNULL="true" COMMENT="School name"/>
+        <FIELD NAME="region_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="Maps to the id column in the regions table"/>
+        <FIELD NAME="address" TYPE="text" NOTNULL="true" COMMENT="School address"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="100" NOTNULL="true" COMMENT="School email"/>
+        <FIELD NAME="contact" TYPE="char" LENGTH="20" NOTNULL="true" COMMENT="Contact number"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="true" COMMENT="School Status: approved or pending or suspended" DEFAULT="pending"/>
+        <FIELD NAME="created_at" TYPE="datetime" NOTNULL="true" COMMENT="when the school was created" DEFAULT="current_timestamp"/>
+        <FIELD NAME="updated_at" TYPE="datetime" NOTNULL="true" COMMENT="when the school was updated" DEFAULT="current_timestamp" ONUPDATE="current_timestamp"/>
+        <!-- Add more fields as needed for school registration -->
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_regions" COMMENT="each record is a region in Ghana">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" COMMENT="Primary key"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="200" NOTNULL="true" COMMENT="name of the region"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="true" COMMENT="region status: determines wether certain function should be enabled for certain regions" DEFAULT="active"/>
+        <FIELD NAME="created_at" TYPE="datetime" NOTNULL="true" COMMENT="when the region was created" DEFAULT="current_timestamp"/>
+        <FIELD NAME="updated_at" TYPE="datetime" NOTNULL="true" COMMENT="when the region was updated" DEFAULT="current_timestamp" ONUPDATE="current_timestamp"/>
+        <!-- Add more fields as needed for school registration -->
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
