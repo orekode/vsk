@@ -28,7 +28,7 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 } else {
     $CFG->wwwroot = 'http://'.$_SERVER['HTTP_HOST'];
 }
-$CFG->dataroot = '/bitnami/moodledata';
+$CFG->dataroot = './data';
 $CFG->admin = 'admin';
 
 $CFG->directorypermissions = 02777;
